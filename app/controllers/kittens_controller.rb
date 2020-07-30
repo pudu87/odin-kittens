@@ -11,6 +11,12 @@ class KittensController < ApplicationController
   
   def create
     @kitten = Kitten.new(kitten_params)
+    if @kitten.save
+      flash[:succes]
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -20,11 +26,18 @@ class KittensController < ApplicationController
   end
 
   def update
-    @kitten.update(kitten_params)
+    if @kitten.update(kitten_params)
+      flash[:succes]
+      redirect_to kitten_path(@kitten)
+    else
+      render edit_kitten_path(@kitten)
+    end
   end
 
   def destroy
     @kitten.destroy
+    flash[:succes]
+    redirect_to root_path
   end
 
   private

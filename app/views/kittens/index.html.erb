@@ -1,0 +1,12 @@
+<ul>
+  <% @kittens.each do |kitten| %>
+    <li><%= link_to kitten.name, kitten_path(kitten) %><br>
+      age: <%= kitten.age %><br>
+      cuteness: <%= kitten.cuteness %><br>
+      softness: <%= kitten.softness %><br>
+      <%= link_to '>>Delete', kitten_path(kitten), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to '>>New', new_kitten_path %>
