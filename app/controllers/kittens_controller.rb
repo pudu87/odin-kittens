@@ -12,9 +12,10 @@ class KittensController < ApplicationController
   def create
     @kitten = Kitten.new(kitten_params)
     if @kitten.save
-      flash[:succes]
+      flash[:notice] = "You have created #{@kitten.name}"
       redirect_to root_path
     else
+      flash[:notice] = "Failed, try again"
       render :new
     end
   end
@@ -27,16 +28,17 @@ class KittensController < ApplicationController
 
   def update
     if @kitten.update(kitten_params)
-      flash[:succes]
+      flash[:notice] = "You have updated #{@kitten.name}"
       redirect_to kitten_path(@kitten)
     else
+      flash[:notice] = "Failed, try again"
       render edit_kitten_path(@kitten)
     end
   end
 
   def destroy
     @kitten.destroy
-    flash[:succes]
+    flash[:notice] = "You have deleted #{@kitten.name}"
     redirect_to root_path
   end
 
