@@ -5,6 +5,7 @@ class KittensController < ApplicationController
     @kittens = Kitten.all
 
     respond_to do |format|
+      format.html { render "index" }
       format.json { render :json => @kittens }
     end
   end
@@ -26,6 +27,7 @@ class KittensController < ApplicationController
 
   def show
     respond_to do |format|
+      format.html { render "show" }
       format.json { render :json => @kitten }
     end
   end
